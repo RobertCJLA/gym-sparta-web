@@ -1,4 +1,6 @@
 ---
+import Navbar from "../components/Navbar.astro";
+
 const title = "Gimnasio Sparta";
 const description =
   "Gimnasio Sparta es la plataforma oficial de Gimnasio Sparta. Conoce nuestros servicios, horarios, promociones y transforma tu vida con entrenamiento profesional.";
@@ -53,6 +55,7 @@ import "../styles/global.css";
   	<meta name="ICBM" content="13.0919, -86.3538" />
 	</head>
 	<body class="font-montserrat">
+		<Navbar />
 		<slot />
 	</body>
 </html>

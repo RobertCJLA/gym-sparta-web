@@ -1,0 +1,100 @@
+<header class="nav-wrap fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6" data-navbar>
+  <div class="nav-shell mx-auto w-full max-w-6xl overflow-hidden rounded-xl border border-[#f6efe22e] bg-[#0d0d0db8] backdrop-blur-xl">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_-40%,rgb(242_183_5/0.3),transparent_55%),linear-gradient(120deg,rgb(246_239_226/0.08),transparent_42%)] blur-xl"></div>
+    <div class="relative flex items-center justify-between px-4 py-3 md:px-6">
+      <a href="/" class="inline-flex items-baseline gap-1.5 no-underline">
+        <span class="font-cinzel text-xl uppercase tracking-[0.08em] text-[#f6efe2] md:text-2xl">Sparta</span>
+        <span class="rounded-sm bg-dorado px-1.5 py-0.5 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-[#0d0d0d] md:text-[0.65rem]">Gym</span>
+      </a>
+
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Navegacion principal">
+        <a href="/" class="rounded-md px-3 py-2 text-sm font-semibold tracking-[0.03em] text-[#f6efe2e0] no-underline transition hover:bg-[#f6efe216] hover:text-dorado">Inicio</a>
+        <a href="/#planes" class="rounded-md px-3 py-2 text-sm font-semibold tracking-[0.03em] text-[#f6efe2e0] no-underline transition hover:bg-[#f6efe216] hover:text-dorado">Servicios</a>
+        <a href="/#contacto" class="rounded-md px-3 py-2 text-sm font-semibold tracking-[0.03em] text-[#f6efe2e0] no-underline transition hover:bg-[#f6efe216] hover:text-dorado">Beneficios</a>
+        <a href="mailto:contacto@gimnasiosparta.com" class="rounded-md px-3 py-2 text-sm font-semibold tracking-[0.03em] text-[#f6efe2e0] no-underline transition hover:bg-[#f6efe216] hover:text-dorado">Contactar</a>
+      </nav>
+
+      <details class="group md:hidden">
+        <summary class="flex list-none cursor-pointer items-center gap-2 rounded-md border border-[#f6efe247] px-3 py-2 text-sm font-semibold text-[#f6efe2] marker:content-none">
+          <span>Menu</span>
+          <svg class="h-4 w-4 transition group-open:rotate-180" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </summary>
+
+        <nav class="mt-2 grid gap-1 border-t border-[#f6efe224] pt-2" aria-label="Navegacion movil">
+          <a href="/" class="rounded-md px-3 py-2 text-sm font-semibold text-[#f6efe2e0] no-underline transition hover:bg-[#f6efe216]">Inicio</a>
+          <a href="/#planes" class="rounded-md px-3 py-2 text-sm font-semibold text-[#f6efe2e0] no-underline transition hover:bg-[#f6efe216]">Servicios</a>
+          <a href="/#contacto" class="rounded-md px-3 py-2 text-sm font-semibold text-[#f6efe2e0] no-underline transition hover:bg-[#f6efe216]">Beneficios</a>
+          <a href="mailto:contacto@gimnasiosparta.com" class="mt-1 rounded-md bg-[linear-gradient(130deg,#f2b705,#d9a673)] px-3 py-2 text-center text-sm font-bold tracking-[0.03em] text-[#0d0d0d] no-underline">Contactar</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  (() => {
+    const nav = document.querySelector('[data-navbar]');
+    if (!nav) return;
+
+    const shell = nav.querySelector('.nav-shell');
+    let ticking = false;
+
+    const paint = () => {
+      const y = window.scrollY;
+      const deep = y > 40;
+
+      nav.classList.toggle('nav-compact', deep);
+      nav.classList.add('nav-visible');
+
+      if (shell) {
+        shell.style.boxShadow = deep
+          ? '0 18px 48px rgb(0 0 0 / 0.42)'
+          : '0 8px 24px rgb(0 0 0 / 0.22)';
+      }
+
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(paint);
+    };
+
+    paint();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>
+
+<style>
+  .nav-wrap {
+    transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1), padding-top 260ms ease;
+  }
+
+  .nav-shell {
+    transition: border-color 260ms ease, background-color 260ms ease;
+  }
+
+  .nav-visible {
+    transform: translateY(0);
+  }
+
+  .nav-compact {
+    padding-top: 0.55rem;
+  }
+
+  .nav-compact .nav-shell {
+    border-color: rgb(246 239 226 / 0.28);
+    background-color: rgb(13 13 13 / 0.76);
+    backdrop-filter: blur(18px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-wrap,
+    .nav-shell {
+      transition: none;
+    }
+  }
+</style>
