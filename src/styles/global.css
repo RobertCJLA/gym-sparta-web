@@ -13,3 +13,7 @@
   --font-montserrat: "Montserrat";
   --font-cinzel: "Cinzel";
 }
+
+* {
+  scrollbar-color:  #C9952E #1A2A3A;;
+}
