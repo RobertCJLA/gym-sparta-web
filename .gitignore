@@ -26,3 +26,5 @@ pnpm-debug.log*
 skills-lock.json
 .agents
 AGENTS.md
+
+pnpm-workspace.yaml
