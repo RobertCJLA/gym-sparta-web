@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import { imagenes } from '../utils/imagenes';
 
 const services = [
   {
@@ -20,27 +22,6 @@ const stats = [
   { value: '+1,200', label: 'Miembros activos' },
   { value: '4 AM - 10 PM', label: 'Horario extendido' },
   { value: '4.9/5', label: 'Valoracion promedio' }
-];
-
-const slides = [
-  {
-    src: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1600&q=80',
-    alt: 'Zona de pesas del gimnasio con iluminacion intensa',
-    title: 'Fuerza real',
-    text: 'Equipo premium para construir potencia con seguridad.'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=1600&q=80',
-    alt: 'Clase grupal de entrenamiento funcional',
-    title: 'Energia en equipo',
-    text: 'Clases que te empujan a rendir al maximo con motivacion constante.'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=80',
-    alt: 'Entrenamiento personal con barra olimpica',
-    title: 'Resultados visibles',
-    text: 'Rutinas personalizadas para acelerar tu progreso desde el dia uno.'
-  }
 ];
 ---
 
@@ -95,9 +76,9 @@ const slides = [
       <div class="relative mx-auto h-105 max-w-260 overflow-hidden rounded-xl border border-[#f6efe238] bg-white/5 backdrop-blur-xl md:h-140 perspective-[1400px]">
         <div class="carousel-track relative flex h-full w-full items-center justify-center" data-carousel-track>
           {
-            slides.map((slide, index) => (
+            imagenes.map((slide, index) => (
               <article class="carousel-slide absolute left-1/2 top-1/2 h-[78%] w-[80%] origin-center overflow-hidden rounded-2xl border border-[#f6efe23b] shadow-[0_30px_80px_rgb(0_0_0/0.45)] transition duration-700 ease-out transform-3d md:w-[72%]">
-                <img src={slide.src} alt={slide.alt} class="h-full w-full object-cover object-center" loading={index === 0 ? 'eager' : 'lazy'} />
+                <Image src={slide.src} alt={slide.alt} width={1200} height={800} class="h-full w-full object-cover object-center" />
                 <div class="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgb(0_0_0/0.75)_100%)]"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-5 md:p-8">
                   <p class="m-0 text-xs uppercase tracking-[0.18em] text-dorado">{slide.title}</p>
